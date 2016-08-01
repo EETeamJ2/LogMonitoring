@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Admin Theme v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="header">
+	     <div class="container" style="width:200px; padding-left:0px;padding-right:0px;">
+	        <div class="row">
+	           <div class="col-md-5">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <h1><a href="index.html">EEJ2</a></h1>
+	              </div>
+	           </div>
+	        </div>
+	     </div>
+	</div>
+
+    <div class="page-content">
+    	<div class="row">
+		  <div class="col-md-12">
+		  	<div class="row">
+	  				<div class="col-md-12">
+	  					<div class="content-box-header">
+		  					<div class="panel-title">Filter</div>
+							
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div class="row">
+								<div class="col-md-1">
+									<a href="JavaScript:void(0)" class="single_view">
+										<span>Weekly</span>
+									</a>
+								</div>
+								<div class="col-md-1">
+									<a href="JavaScript:void(0)" class="single_view">
+										<span>Monthly</span>
+									</a>
+								</div>
+								<div class="col-md-1">
+									<a href="JavaScript:void(0)" class="single_view">
+										<span>Yearly</span>
+									</a>	
+								</div>
+								<div class="col-md-1">
+									<a href="JavaScript:void(0)" class="show_input_form">
+										<span>Compare</span>
+									</a>
+								</div>
+								<div id="compare_input_form" class="col-md-8 hide">
+									<form class="form-inline" role="form">
+										
+											<fieldset>
+												<div class="form-group col-sm-3">
+													<label class="sr-only" for="from_date">From Date</label>
+													<input type="text" class="form-control" id="from_date" placeholder="From Date">
+												</div>
+												<div class="form-group  col-sm-3">
+													<label class="sr-only" for="to_date">To Date</label>
+													<input type="text" class="form-control" id="to_date" placeholder="To Date">
+												</div>
+												
+												<button type="button" class="btn btn-primary multiple_view">
+													Search
+												</button>
+											</fieldset>
+											
+										</form>
+								</div>
+						</div>
+	  				</div>
+
+	  			</div>
+
+			<div id="show_multiple_view" class="row hide">
+		  		<div class="col-md-6">
+		  			<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">New vs Returning Visitors</div>
+						</div>
+		  				<div class="panel-body">
+		  					<iframe src="http://localhost:5601/app/kibana#/visualize/create?embed=true&type=pie&indexPattern=elk_logs&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(field:loglevel,order:desc,orderBy:'1',size:5),schema:segment,type:terms)),listeners:(),params:(addLegend:!t,addTooltip:!t,isDonut:!f,shareYAxis:!t),title:'New%20Visualization',type:pie))" height="600" width="800"></iframe>
+		  				</div>
+		  			</div>
+		  		</div>
+				
+		  		<div class="col-md-6">
+		  			<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">New vs Returning Visitors</div>
+						</div>
+		  				<div class="panel-body">
+		  					<iframe src="http://localhost:5601/app/kibana#/visualize/create?embed=true&type=histogram&indexPattern=elk_logs&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(field:loglevel,order:desc,orderBy:'1',size:5),schema:segment,type:terms)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!f,shareYAxis:!t,times:!(),yAxis:()),title:'New%20Visualization',type:histogram))" height="600" width="800"></iframe>
+		  				</div>
+		  			</div>
+		  		</div>
+
+		  		</div>
+		  	
+			<div id="show_single_view" class="row">
+				<div class="col-md-3">
+				</div>
+		  		<div class="col-md-6">
+		  			<div class="content-box-large">
+		  				<div class="panel-heading">
+							<div class="panel-title">New vs Returning Visitors</div>
+						</div>
+		  				<div class="panel-body">
+		  					<iframe src="http://localhost:5601/app/kibana#/visualize/create?embed=true&type=pie&indexPattern=elk_logs&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(),vis:(aggs:!((id:'1',params:(),schema:metric,type:count),(id:'2',params:(field:loglevel,order:desc,orderBy:'1',size:5),schema:segment,type:terms)),listeners:(),params:(addLegend:!t,addTooltip:!t,isDonut:!f,shareYAxis:!t),title:'New%20Visualization',type:pie))" height="600" width="800"></iframe>
+		  				</div>
+		  			</div>
+		  		</div>
+				<div class="col-md-3">
+				</div>
+			</div>
+		  	
+			
+			</div>
+
+
+		  </div>
+		</div>
+    </div>
+
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    
+    
+  </body>
+  <script src="js/jquery.js"></script>
+  <script>
+  $(document).ready(function(){
+  $(".multiple_view").click(function(){
+		$("#show_multiple_view").addClass('show').removeClass('hide');
+		$("#show_single_view").addClass('hide').removeClass('show');
+		$("#compare_input_form").addClass('hide').removeClass('show');
+  });
+  $(".single_view").click(function(){
+		$("#show_multiple_view").addClass('hide').removeClass('show');
+		$("#show_single_view").addClass('show').removeClass('hide');
+  });
+  $(".show_input_form").click(function(){
+		$("#show_multiple_view").addClass('hide').removeClass('show');
+		$("#show_single_view").addClass('hide').removeClass('show');
+		$("#compare_input_form").addClass('show').removeClass('hide');
+  });
+  });
+  </script>
+</html>
