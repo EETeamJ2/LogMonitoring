@@ -1,0 +1,102 @@
+input {
+  file {
+    path => "D:/Connecture/NW/logs/cc.log"
+	type => "application"  # a type to identify those logs (will need this later)
+    start_position => "beginning"
+	codec => multiline {
+        pattern => "^(?i)(?!(ERROR|WARN|INFO))"
+        what => "previous"
+        }
+  }
+  file {
+    path => "D:/Connecture/NW/jboss/server/default/log/se.log"
+	type => "apache-access"  # a type to identify those logs (will need this later)
+    start_position => "beginning"
+	codec => multiline {
+	    pattern => "^(?i)(?!%{TIMESTAMP_ISO8601})"
+        what => "previous"
+        }
+  }
+}
+
+filter {  
+     if [type] == "application" {   # this is where we use the type from the input section
+      grok {
+     match => {	 
+	"message" => '%{GREEDYDATA:loglevel} %{TIMESTAMP_ISO8601:timestamp} \[%{GREEDYDATA:host}\]: %{GREEDYDATA:javaclass} - %{GREEDYDATA:error}'
+		}
+    }
+	mutate{
+	add_field => ["newclass", "%{javaclass}" ]
+	}
+	
+	mutate {
+        # split the field on ::
+        split => ["newclass" , "."]
+        # save the last element of the array as the api_method.
+       add_field => ["ModuleName", "%{[newclass][2]}" ]
+    }
+  }
+  
+    if [type] == "apache-access" {   # this is where we use the type from the input section
+      grok {
+	   match => {
+	   "message" => '%{TIMESTAMP_ISO8601:timestamp2} %{GREEDYDATA:loglevel2} \[%{GREEDYDATA:javaclass2}\] \(%{GREEDYDATA:threadname2}\) %{GREEDYDATA:errormessage2}'
+	   }
+    } 
+	
+  }
+  
+}
+
+output {  
+
+if [type] == "application" { 
+ 
+  # Now send it to Elasticsearch which here is running  
+        # on the same machine.  
+        elasticsearch { hosts => ["localhost:9200"] index => "cnxapplog"}  
+		
+		 if "error" in [message] {
+          email {
+		    address => "smtp.gmail.com"
+		    port => 587
+		    use_tls => true
+		    authentication => "plain"
+            from => "ELK Log Stash"
+			username => "elklogstest@gmail.com"
+		    password => "logtester123"
+            subject => "logstash alert for connecture logs"
+            to => "rr@connecture.com"
+            via => "smtp"
+            body => "Error occured in Connecture Application: %{message}"
+                 }
+               }
+  }
+
+if [type] == "apache-access" { 
+ 
+  # Now send it to Elasticsearch which here is running  
+        # on the same machine.  
+        elasticsearch { hosts => ["localhost:9200"] index => "cnxserversog" }  
+		
+		 if "error" in [message] {
+          email {
+		    address => "smtp.gmail.com"
+		    port => 587
+		    use_tls => true
+		    authentication => "plain"
+            from => "ELK Log Stash"
+			username => "elklogstest@gmail.com"
+		    password => "logtester123"
+            subject => "logstash alert for nrslogs"
+            to => "rr@impetus.co.in"
+            via => "smtp"
+            body => "Error occured in Connecture Application: %{message}"
+                 }
+               }
+              }	
+
+        
+       		
+        }

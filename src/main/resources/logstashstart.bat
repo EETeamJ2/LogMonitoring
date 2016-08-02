@@ -1,0 +1,1 @@
+C:\Elks\logstash\bin\logstash agent -f C:\Elks\logstash\bin\cnxIndex --auto-reload

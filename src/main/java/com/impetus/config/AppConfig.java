@@ -67,12 +67,12 @@ public class AppConfig {
 				.addTransportAddress(
 						new InetSocketTransportAddress(InetAddress
 								.getByName("127.0.0.1"), 9300));
-		boolean exists = client.admin().indices().prepareExists("cnxapplogs")
+		boolean exists = client.admin().indices().prepareExists("cnxapplog")
 				.execute().actionGet().isExists();
 		if (!exists) {
 			client.admin()
 					.indices()
-					.prepareCreate("cnxapplogs")
+					.prepareCreate("cnxapplog")
 					.addMapping(
 							"application",
 							"{\n"
@@ -125,7 +125,7 @@ public class AppConfig {
 
 		 Runtime runtime = Runtime.getRuntime();
 		 try {
-		 Process p1 = runtime.exec("cmd /c start D:/bb.VBS");
+		 Process p1 = runtime.exec("cmd /c start D:/vbscript.VBS");
 		 InputStream is = p1.getInputStream();
 		 
 		 int i = 0;
